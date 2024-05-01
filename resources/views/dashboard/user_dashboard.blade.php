@@ -19,7 +19,7 @@
         <div class="flex justify-between w-full px-10 sm:px-20 ">
         <a href="{{route('dashboard.seller')}}"> <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p></a>
         <div class="flex space-x-6 ">
-            <a href="{{route('users.login')}}"> <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-white">Login</p></a>
+            <a href="{{route('users.login')}}"> <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-slate-900">Login</p></a>
             <a href="{{route('users.signup')}}"> <p class="text-l font-semibold text-white">Signup</p></a>
         </div>
         </div>

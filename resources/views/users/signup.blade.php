@@ -79,7 +79,7 @@
                 <span class="text-red-500 text-sm mb-6">{{ $message }}</span>
                 @enderror
                 <div class="mb-6 flex items-center gap-2">
-                    <input class="p-5" type="checkbox" id="showPassword">
+                    <input class="p-5 cursor-pointer" type="checkbox" id="showPassword">
                     <label for="showPassword" class="text-sm font-medium text-gray-900 cursor-pointer">See Password</label>
                 </div>
                 <div class="pb-10">

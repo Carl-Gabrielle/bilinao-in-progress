@@ -31,18 +31,18 @@
                     </svg>
                     <div class="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center bg-red-500 text-white rounded-full text-xs">9</div>
                 </button>
-                {{-- <div class="relative ml-3 ">
-                    <div>
+                <div class="relative ml-3 ">
+                    <div class="flex items-center gap-2">
                         <button id="user-menu-button" type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-expanded="false" aria-haspopup="true">
                             <span class="absolute -inset-1.5"></span>
                             <span class="sr-only">Open user menu</span>
                             <img class="h-8 w-8 rounded-full" src="/illustrations/TikTok Profile Picture Ideas.jpg" alt="">
                         </button>
                         @if(Auth::check())
-            <p>Hi, {{ Auth::user()->name }}</p>
-                @endif
+                        <p>Hi, <span class="text-slate-900 font-semibold">{{ ucfirst(Auth::user()->name) }}</span></p>
+                    @endif                    
                     </div>
-                </div> --}}
+                </div>
         </div>
         <div class="flex lg:hidden items-center">
             <button id="mobile-menu-button" type="button" class="text-gray-300 hover:text-white focus:outline-none focus:text-white">

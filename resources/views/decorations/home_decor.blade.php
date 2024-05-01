@@ -20,7 +20,7 @@
         <div class="flex justify-between w-full px-10 sm:px-20 ">
         <a href="{{route('dashboard.seller')}}"> <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p></a>
         <div class="flex space-x-6 ">
-            <a href="{{route('users.login')}}"> <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-white">Login</p></a>
+            <a href="{{route('users.login')}}"> <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-slate-900">Login</p></a>
             <a href="{{route('users.signup')}}"> <p class="text-l font-semibold text-white">Signup</p></a>
         </div>
         </div>
@@ -109,25 +109,7 @@
         </div>
     </div>
     <div class="pt-11 grid grid-cols-2 pb-6 lg:grid-cols-4 gap-5 ml-5 mr-5">
-        @foreach (range(1, 4) as $index)
-           <div class="relative px-2 flex flex-col justify-between cursor-pointer bg-white p-4 shadow-md rounded-3xl hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out ">
-                <div class="svg-container">
-                    <svg class="svg1 absolute right-4 sm:right-8" width="22" height="22" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.343 7.778a4.5 4.5 0 0 1 7.339-1.46L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.501 4.501 0 0 1-.975-4.904Z"></path>
-                    </svg>
-                    <svg class="svg2 absolute right-8" width="22" height="22" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display: none;">
-                        <path fill-rule="evenodd" d="M3.806 6.206a4.8 4.8 0 0 1 6.788 0L12 7.612l1.406-1.406a4.8 4.8 0 1 1 6.788 6.788L12 21.188l-8.194-8.194a4.8 4.8 0 0 1 0-6.788Z" clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <a href="{{route('productDetails.details')}}">
-                <img class="object-cover mx-auto" src="/illustrations/home-decor.png" alt="Home Vase">
-                <div class="flex flex-col justify-center">
-                    <p class="text-center text-gray-700 mt-4 font-semibold">Home Vase</p>
-                    <h2 class="text-lg font-semibold text-center text-gray-900 mt-2">&#8369;300</h2>
-                </div>
-                <div class="circle-tooltip"></div> 
-            </a>
-            </div>
+        @foreach ($homeDecorationsProducts as $product)
             <div class="relative px-2 flex flex-col justify-between cursor-pointer bg-white p-4 shadow-md rounded-3xl hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out ">
                 <div class="svg-container">
                     <svg class="svg1 absolute right-4 sm:right-8" width="22" height="22" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -137,17 +119,18 @@
                         <path fill-rule="evenodd" d="M3.806 6.206a4.8 4.8 0 0 1 6.788 0L12 7.612l1.406-1.406a4.8 4.8 0 1 1 6.788 6.788L12 21.188l-8.194-8.194a4.8 4.8 0 0 1 0-6.788Z" clip-rule="evenodd"></path>
                     </svg>
                 </div>
-                <a href="{{route('productDetails.details')}}">
-                <img class="object-cover mx-auto" src="/illustrations/tieDye.png" alt="Home Vase">
-                <div class="flex flex-col justify-center">
-                    <p class="text-center text-gray-700 mt-4 font-semibold">Home Vase</p>
-                    <h2 class="text-lg font-semibold text-center text-gray-900 mt-2">&#8369;300</h2>
-                </div>
-                <div class="circle-tooltip"></div> 
-            </a>
+                <a href="{{ route('productDetails.details', $product->id) }}">
+                    <img class="object-cover mx-auto" src="/illustrations/tieDye.png" alt="{{ $product->title }}">
+                    <div class="flex flex-col justify-center">
+                        <p class="text-center text-gray-700 mt-4 font-semibold">{{ $product->title }}</p>
+                        <h2 class="text-lg font-semibold text-center text-gray-900 mt-2">&#8369;{{ $product->price }}</h2>
+                    </div>
+                    <div class="circle-tooltip"></div> 
+                </a>
             </div>
-@endforeach 
+        @endforeach 
     </div>
+    
 </div>
 </div>
 @extends('layout.footer')
@@ -206,4 +189,5 @@ document.querySelectorAll('.svg-container').forEach(container => {
 });
 
 </script>
+
 </html>

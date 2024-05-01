@@ -19,7 +19,7 @@
         <div class="flex justify-between w-full px-10 sm:px-20 ">
         <a href="{{route('dashboard.seller')}}"> <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p></a>
         <div class="flex space-x-6 ">
-            <a href="{{route('users.login')}}"> <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-white">Login</p></a>
+            <a href="{{route('users.login')}}"> <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-slate-900">Login</p></a>
             <a href="{{route('users.signup')}}"> <p class="text-l font-semibold text-white">Signup</p></a>
         </div>
         </div>
@@ -37,13 +37,13 @@
                 </nav>
             </div>
             
-            <div class="flex flex-col  md:flex-row gap-6 md:gap-12 items-center bg-white rounded-lg  p-8 md:p-12">
+            <div class="flex flex-col  md:flex-row gap-10 md:gap-12 items-center bg-white rounded-lg  border border-gray-900  p-8 md:p-12">
                 <div class="w-full md:w-1/2 lg:w-1/3">
                     <img class=" object-cover w-full h-auto md:h-64 lg:h-80 mb-6 md:mb-0" src="/illustrations/home-decor.png" alt="Home Decor Image">
                 </div>
                 <div class="md:w-1/2 lg:w-2/3 ">
                     <div class="px-4 md:px-0">
-                        <p class="text-center sm:text-left font-bold text-2xl md:text-3xl lg:text-4xl text-gray-800">Home Decorations</p>
+                        <p class="text-center sm:text-left font-bold text-2xl md:text-3xl lg:text-4xl text-gray-800">Home Vase</p>
                         <!-- Star Ratings -->
                         <div class="flex gap-1 items-center justify-center sm:justify-start mt-2">
                             <svg width="28" height="28" fill="#fddf1c" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -74,6 +74,8 @@
                                 Buy with Pay
                             </button>
                         </div>
+                        {{-- <hr class="text-gray-900 mt-5 mb-2">
+                        <span c>Category: <span class="text-yellow-500 ">Home Decorations</span> </span> --}}
                     </div>
                 </div>
             </div>
@@ -83,10 +85,45 @@
             
         </div>
     </div>
-    <div class="w-full pt-40 h-screen px-5">
-        <div class="max-w-6xl px-6 mx-auto">
+    <hr class="mt-10 border-t border-gray-200">
 
+    <div class="container mx-auto py-12">
+        <div class="max-w-6xl px-6 mx-auto">
+            <div class="flex items-center gap-6 mb-6">
+                    <span id="descriptionClick" class="font-medium cursor-pointer  ">Description</span>
+                    <span id="reviewsClick" class="font-medium cursor-pointer  rounded-lg bg-gray-800 px-6 py-1 text-white">Reviews(0)</span>
+            </div>
+            <div  id="descriptionDiv" class="w-full hidden h-52 bg-gray-100">
+                <h1>This is Description</h1>
+            </div>
+            @include('decorations.comments-box')
+            
+            
         </div>
     </div>
+    
+    
+
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+// $(document).ready(function() {
+//     $('#descriptionClick').click(function(event) {
+//         event.preventDefault(); 
+//         $('#reviewDiv').slideUp('fast');
+//         $('#descriptionDiv').slideToggle('fast');
+//     });
+
+//     $('#reviewsClick').click(function(event) {
+//         event.preventDefault(); 
+//         $('#descriptionDiv').slideUp('fast');
+//         $('#reviewDiv').slideToggle('fast');
+//     });
+// });
+
+
+
+
+</script>
 </html>
