@@ -1,7 +1,7 @@
 
 <nav class="bg-gray-800 container-lg container_nav shadow-md fixed top-9 w-full z-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
+        <div class="flex justify-between items-center h-16 sm:px-6 px-0 ">
             <div class="flex-shrink-0 flex items-center">
                 <a href="{{route('dashboard.user_dashboard')}}" class="text-gray-800 text-lg font-semibold">Bili-<span class="text-yellow-400">Nao</span></a>
             </div>
@@ -144,7 +144,7 @@
         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
     </div>
-    <div id="mobile-menu" class="mobile-menu md:hidden absolute left-1/2 transform -translate-x-1/2 z-10 mt-2 w-72 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" style="display: none;">
+    <div id="mobile-menu" class="mobile-menu md:hidden absolute left-1/2 transform -translate-x-1/2 z-10 mt-2 w-96 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" style="display: none;">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded" role="menuitem" tabindex="-1" id="user-menu-item-0">Home</a>
             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded" role="menuitem" tabindex="-1" id="user-menu-item-1">About Us</a>

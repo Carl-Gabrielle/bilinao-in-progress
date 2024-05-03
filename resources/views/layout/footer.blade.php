@@ -1,4 +1,4 @@
-<footer class="bg-gray-900 text-white ">
+<footer class="bg-gray-900 text-white   ">
     <div class="container mx-auto py-8 lg:py-12 px-6 lg:px-12 flex flex-col lg:flex-row justify-between items-center">
         <div class="mb-6 lg:mb-0">
             <h2 class="text-3xl lg:text-4xl font-semibold">Explore Local Crafts.</h2>

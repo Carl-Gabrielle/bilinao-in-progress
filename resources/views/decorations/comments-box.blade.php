@@ -1,20 +1,13 @@
-<div id="reviewDiv" class="w-2/4 h-auto px-6 py-2 bg-gray-100">
+<div id="reviewDiv" class=" hidden w-2/3 right-0  h-auto px-6 py-6 container_nav rounded-md">
 
-    <div class="mb-4">
-        <div class="flex justify-between mb-2">
-            <span class="text-gray-400">Carl</span> <!-- Assuming you have a user relationship in your Comment model -->
-            <div>
-                <button class="text-blue-500 mr-2">Edit</button>
-                <button class="text-red-500">Delete</button>
-            </div>
+    <div class="flex flex-col justify-center items-center w-full h-96 border rounded-lg border-gray-400">
+        <div>
+            <h3 class="text-slate-900 font-bold text-2xl text-center">No reviews yet. Be the first to share your thoughts!</h3>
         </div>
-        <p></p>
+        <div class="pt-10 gap-4 flex-col flex sm:flex-row">
+            <button class="px-10 py-2 bg-gray-800 rounded-full text-white">Write a review</button>
+            <button class="px-10 py-2 border border-gray-500 rounded-full">Upload a Photo</button>
+        </div>
     </div>
-
-    <!-- New comment form -->
-    <form action="" method="POST" id="reviewForm" class="mb-4">
-        @csrf
-        <textarea name="content" id="reviewText" class="w-full h-20 px-3 py-2 border border-gray-300 rounded-md" placeholder="Write your review here..." required></textarea>
-        <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">Post Review</button>
-    </form>
+    
 </div>
