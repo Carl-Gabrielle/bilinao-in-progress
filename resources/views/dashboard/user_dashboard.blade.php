@@ -13,19 +13,26 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css" integrity="sha384-...." crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
     <div class=" text-sm w-full fixed z-20 bg-gray-800  h-10 sell flex items-center">
         <div class="flex justify-between w-full px-10 sm:px-20 ">
-        <a href="{{route('users.login')}}"> <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p></a>
-        <div class="flex space-x-6 ">
-            <a href="{{route('users.login')}}"> <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-slate-900">Login</p></a>
-            <a href="{{route('users.signup')}}"> <p class="text-l font-semibold text-white">Signup</p></a>
-        </div>
+            <a href="{{ route('dashboard.seller') }}">
+                <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p>
+            </a>
+            @unless(Auth::check())
+            <div class="flex space-x-6 ">
+                <a href="{{ route('users.login') }}">
+                    <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-slate-900">Login</p>
+                </a>
+                <a href="{{ route('users.signup') }}">
+                    <p class="text-l font-semibold text-white">Signup</p>
+                </a>
+            </div>
+        @endunless
         </div>
     </div>
     @extends('layout.navbar')
-<div class="w-full h-full landing ">
+<div class="w-full h-full landing " >
 <div class=" relative flex flex-col  h-screen items-center justify-center text-center  px-3  ">
         <p class="text-6xl pt-32 tracking-wider z-10  sm:text-9xl uppercase text-gray-900">Explore local  <span class="text-yellow-400 font-potta animate-pulse">crafts</span>   </p>
         <div class="flex items-center justify-center h-12 w-12 p-11 rounded-full border-2 border-gray-900 mt-1 z-10">

@@ -31,18 +31,20 @@
                     </svg>
                     <div class="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center bg-red-500 text-white rounded-full text-xs">9</div>
                 </button>
-                <div class="relative ml-3 ">
+                @if(Auth::check())
+                <div  id="user-menu-button" class="relative ml-3 cursor-pointer  hover:bg-gray-200 rounded-lg px-4 py-1">
                     <div class="flex items-center gap-2">
-                        <button id="user-menu-button" type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-expanded="false" aria-haspopup="true">
+                        <button  type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-expanded="false" aria-haspopup="true">
                             <span class="absolute -inset-1.5"></span>
                             <span class="sr-only">Open user menu</span>
                             <img class="h-8 w-8 rounded-full" src="/illustrations/TikTok Profile Picture Ideas.jpg" alt="">
                         </button>
-                        @if(Auth::check())
-                        <p>Hi, <span class="text-slate-900 font-semibold">{{ ucfirst(Auth::user()->name) }}</span></p>
-                    @endif                    
+                        <p>Hi, <span class="text-slate-900 font-semibold">{{ ucfirst(Auth::user()->name) }} <i class="fas fa-chevron-down text-sm font-bold ml-1"></i>  </span></p>
+                         
                     </div>
+
                 </div>
+                @endif 
         </div>
         <div class="flex lg:hidden items-center">
             <button id="mobile-menu-button" type="button" class="text-gray-300 hover:text-white focus:outline-none focus:text-white">
@@ -139,10 +141,42 @@
             <button class="w-full bg-yellow-300 py-2 text-white rounded-2xl" style="background-color: orangered;">Checkout</button>
         </div>
     </div>
-    <div id="user-mobile" class="user-list absolute right-5 z-10 mt-2 w-48 origin-top-right rounded-md bg-white px-2  py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" tabindex="-1" style="display: none;">
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+    <div id="user-mobile" class=" user-list absolute right-5 z-10 mt-2   w-96 h-96 origin-top-right rounded-md bg-white px-2  py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" tabindex="-1" style="display: none;">
+       <div class=" py-10  px-6">
+        <h3 class="text-2xl ">User Profile</h3>
+        <div class="py-2 flex items-center gap-4">
+            <img class="h-24 w-24 rounded-full object-cover" src="/illustrations/TikTok Profile Picture Ideas.jpg" alt="">
+            <div>
+            @if(Auth::check())
+                <h2 class="text-2xl">{{ ucfirst(Auth::user()->name) }}</h2>
+                <p class="text-sm"><i class="fas fa-envelope text-gray-400 pr-1"></i> {{ Auth::user()->email }}</p>
+            @endif 
+            </div>
+        </div>
+        <hr class="mt-4">
+        <div class="py-2 mt-4 cursor-pointer rounded-lg px-6 flex items-center gap-6 w-full hover:bg-gray-100">
+            <svg width="26" height="26" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.675 4.317c-.426-1.756-2.924-1.756-3.35 0a1.723 1.723 0 0 1-2.572 1.065c-1.544-.94-3.31.827-2.37 2.37a1.724 1.724 0 0 1-1.066 2.573c-1.756.426-1.756 2.924 0 3.35a1.725 1.725 0 0 1 1.065 2.572c-.94 1.544.827 3.31 2.37 2.37a1.724 1.724 0 0 1 2.573 1.066c.426 1.756 2.924 1.756 3.35 0a1.725 1.725 0 0 1 2.572-1.065c1.544.94 3.31-.827 2.37-2.37a1.725 1.725 0 0 1 1.066-2.573c1.756-.426 1.756-2.924 0-3.35a1.724 1.724 0 0 1-1.065-2.572c.94-1.544-.827-3.31-2.37-2.37a1.724 1.724 0 0 1-2.573-1.066Z"></path>
+                <path d="M14.121 14.121A3 3 0 1 0 9.88 9.88a3 3 0 0 0 4.242 4.242Z"></path>
+             </svg>
+             <div>
+                <h1>My Profile</h1>
+                <h5 class="text-gray-400">Account Settings</h5>
+             </div>
+        </div> 
+        <div class="cursor-pointer bg-gray-800 mb-10 rounded-lg mt-10 flex py-1 items-center justify-center w-full">
+            <a href="{{ route('logout') }}" 
+   onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+   class="block px-4 py-2 text-sm text-white " 
+   role="menuitem" tabindex="-1" 
+   id="user-menu-item-2">Logout</a>
+        </div>
+       </div>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+    @csrf
+</form>
+
     </div>
     <div id="mobile-menu" class="mobile-menu md:hidden absolute left-1/2 transform -translate-x-1/2 z-10 mt-2 w-96 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" style="display: none;">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">

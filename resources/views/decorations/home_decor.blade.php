@@ -18,7 +18,15 @@
 <body>
     <div class=" text-sm w-full fixed z-20 bg-gray-800  h-10 sell flex items-center">
         <div class="flex justify-between w-full px-10 sm:px-20 ">
-        <a href="{{route('users.login')}}"> <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p></a>
+            @if(auth()->check())
+            <a href="{{ route('dashboard.seller') }}">
+                <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p>
+            </a>
+        @else
+            <a href="{{ route('users.login') }}">
+                <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p>
+            </a>
+        @endif
         <div class="flex space-x-6 ">
             <a href="{{route('users.login')}}"> <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-slate-900">Login</p></a>
             <a href="{{route('users.signup')}}"> <p class="text-l font-semibold text-white">Signup</p></a>
@@ -45,11 +53,10 @@
                 </div>
             </div>
         </div>
-        
     </div>
 </div>
 <div class="w-full h-full mt-20 bg-gray-100">
-    <div class="max-w-6xl px-6 mx-auto ">
+    <div class="max-w-6xl px-6 mx-auto  ">
     <div class="flex justify-between items-center pt-16">
         <div class="flex gap-6 font-light">
             <span>Filter:</span>
@@ -104,13 +111,12 @@
                     <a href="#" class="block px-4 py-3 hover:bg-gray-100">Price: High to Low</a>
                 </div>
             </div>
-            
             <span class="font-light ">4 products</span>
         </div>
     </div>
-    <div class="pt-11 grid grid-cols-2 pb-6 lg:grid-cols-4 gap-5 ml-5 mr-5">
+    <div class="pt-11 grid grid-cols-1 pb-6 md:grid-cols-3  lg:grid-cols-4 gap-5 ml-5 mr-5">
         @foreach ($homeDecorationsProducts as $product)
-            <div  class="relative px-2 flex flex-col justify-between cursor-pointer bg-white p-4 shadow-md rounded-3xl hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out ">
+            <div  class="relative px-2 sm:px-0 flex flex-col justify-between cursor-pointer bg-white sm:p-4 p-0 shadow-md rounded-3xl hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out ">
                 <div class="svg-container">
                     <svg class="svg1 absolute right-4 sm:right-8" width="22" height="22" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.343 7.778a4.5 4.5 0 0 1 7.339-1.46L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.501 4.501 0 0 1-.975-4.904Z"></path>
@@ -120,7 +126,7 @@
                     </svg>
                 </div>
                 <a href="{{ route('productDetails.details', $product->id) }}">
-                    <img class="object-cover mx-auto" src="/illustrations/tieDye.png" alt="{{ $product->title }}">
+                    <img class="object-cover mx-auto  w-48 h-48 pt-10 " src="{{ asset('images/' . $product->product_image) }}" alt="{{ $product->title }}">
                     <div class="flex flex-col justify-center">
                         <p class="text-center text-gray-700 mt-4 font-semibold">{{ $product->title }}</p>
                         <h2 class="text-lg font-semibold text-center text-gray-900 mt-2">&#8369;{{ $product->price }}</h2>

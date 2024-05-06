@@ -20,13 +20,20 @@
             background-color: rgb(209 250 229);
         color: rgb(5 150 105);
     }
-
-
     </style>
     <body>
         <div class=" text-sm w-full fixed z-20 bg-gray-800  h-10 sell flex items-center">
             <div class="flex justify-between w-full px-10 sm:px-20 ">
-            <a href="{{route('users.login')}}"> <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p></a>
+                @if(auth()->check())
+                <a href="{{ route('dashboard.seller') }}">
+                    <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p>
+                </a>
+            @else
+                <a href="{{ route('users.login') }}">
+                    <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p>
+                </a>
+            @endif
+            
             <div class="flex space-x-6 ">
                 <a href="{{route('users.login')}}"> <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-slate-900">Login</p></a>
                 <a href="{{route('users.signup')}}"> <p class="text-l font-semibold text-white">Signup</p></a>
@@ -45,7 +52,6 @@
                         <a href="#" class="text-gray-900">Details</a>
                     </nav>
                 </div>
-                
                 <div class="flex flex-col  md:flex-row gap-10 md:gap-12 items-center bg-white rounded-lg  border-0 border-gray-900  sm:border p-0 sm:p-8">
                     <div class="w-full md:w-1/2 lg:w-1/3">
                         <img class=" object-cover w-full h-auto md:h-64 lg:h-80 mb-6 md:mb-0" src="/illustrations/home-decor.png" alt="Home Decor Image">
@@ -76,9 +82,15 @@
                             </p>
                             <!-- Add to Cart & Buy with Pay Buttons -->
                             <div class="flex flex-col md:flex-row gap-6 mt-6">
-                                <button class="w-full md:w-auto border-2 border-slate-900  text-slate-900 font-semibold py-3 px-6 md:px-8 lg:px-10 xl:px-12 rounded-full ">
+                                @if(auth()->check())
+                                <a href="{{route('productDetails.details')}}"><button class="w-full md:w-auto border-2 border-slate-900  text-slate-900 font-semibold py-3 px-6 md:px-8 lg:px-10 xl:px-12 rounded-full ">
                                     Add to Cart
-                                </button>
+                                </button></a>
+                                @else
+                                <a href="{{ route('users.login') }}"><button class="w-full md:w-auto border-2 border-slate-900  text-slate-900 font-semibold py-3 px-6 md:px-8 lg:px-10 xl:px-12 rounded-full ">
+                                    Add to Cart
+                                </button></a>
+                                @endif
                                 <button class="w-full md:w-auto bg-yellow-400 text-slate-900 font-semibold py-3 px-6 md:px-8 lg:px-10 xl:px-12 rounded-full ">
                                     Buy with Pay
                                 </button>
@@ -88,10 +100,6 @@
                         </div>
                     </div>
                 </div>
-                
-                
-                
-                
             </div>
         </div>
         <hr class="mt-10 border-t border-gray-200">
