@@ -14,4 +14,5 @@ class Product extends Model
         $handMadeBagsCount = Product::where('category', 'hand_made_bags')->count();
         return view('your-view', compact('handMadeBagsCount'));
     }
+    
 }

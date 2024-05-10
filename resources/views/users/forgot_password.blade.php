@@ -30,7 +30,7 @@
     </style>
 <body >
 <div class="flex flex-col lg:flex-row h-screen  " >
-    <div class=" z-10  flex flex-col relative lg:flex-row w-full md:w-1/2  shadow-lg max-w-4xl mx-auto sm:mx-0  h-full lg:max-h-screen p-10 md:h-full justify-center" style="background-color: rgba(255, 255, 255);">
+    <div class=" z-10  flex flex-col relative lg:flex-row w-full md:w-1/2  shadow-lg max-w-4xl mx-auto sm:mx-0  h-full lg:max-h-screen p-10 md:h-full justify-center bg-slate-50" >
         <img class="lg:w-36 lg:h-28    absolute lg:right-20  lg:top-16  hidden md:block  " src="/illustrations/forgot.png" alt="">
         <div class="w-full  md:px-20  sm:px-0 flex flex-col justify-center ">
                 <h1 id="text" class="text-2xl   font-bold text-gray-800 mb-2" >Forgot your Password?</h1>
@@ -41,13 +41,13 @@
                     <input  required type="email" id="email" name="email" class="mt-1 p-3 w-full rounded-lg border-2 border-gray-300 " >
                 </div>
                 <div class="mb-6">
-                <button name="login_btn" type="submit" class="bg-gray-800 text-white w-full font-semibold hover:bg-gray-700 py-3 px-4 rounded-lg transition duration-200">
+                <button name="login_btn" type="submit" class="bg-gray-800 text-white w-full font-semibold  py-3 px-4 rounded-lg transition duration-200">
                     Reset Password <i class="fa-solid fa-right-to-bracket pl-2" style="color: #ffffff;"></i>
                 </button>
             </div>
             <div class="text-center ">
                 <a class="text-gray-800 w-full font-semibold  py-3 px-4" href="{{route('users.login')}}">
-                    Back to Login <i class="fa-solid fa-right-to-bracket pl-2" style="color: #ffffff;"></i>
+                    Back to Login 
             </a>
             </div>
             </form>

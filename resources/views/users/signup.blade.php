@@ -46,7 +46,7 @@
     </style>
 <body >
 <div class="flex flex-col lg:flex-row h-screen  ">
-    <div class="z-10 relative overflow-auto flex  flex-col lg:flex-row w-full  md:w-1/2  shadow-lg max-w-4xl mx-auto sm:mx-0  h-full lg:max-h-screen p-10 md:h-full justify-center" style="background-color: white;">
+    <div class="z-10 relative overflow-auto flex  flex-col lg:flex-row w-full  md:w-1/2  shadow-lg max-w-4xl mx-auto sm:mx-0  h-full lg:max-h-screen p-10 md:h-full justify-center bg-slate-50 ">
         <img class="lg:w-32 lg:h-32   absolute lg:right-20  lg:top-10  hidden md:block  " src="/illustrations/welcome.png" alt="">
         <div class="w-full  md:px-20 sm:px-0 flex flex-col justify-center h-screen pb-10 pt-10 ">
             <h1 id="text" class="text-2xl  font-bold text-gray-800 mb-2" >Welcome to  Bili-<span class="text-yellow-400">Nao</span>!👋</h1>

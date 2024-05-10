@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
+        <title>Details</title>
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         @vite('resources/css/app.css')
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -81,8 +81,9 @@
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae mauris nec nisi fermentum suscipit. Morbi tempor, sapien non luctus suscipit, lorem justo consequat nunc, non commodo augue quam nec urna.
                             </p>
                             <!-- Add to Cart & Buy with Pay Buttons -->
+
                             <div class="flex flex-col md:flex-row gap-6 mt-6">
-                                @if(auth()->check())
+                                {{-- @if(auth()->check())
                                 <a href="{{route('productDetails.details')}}"><button class="w-full md:w-auto border-2 border-slate-900  text-slate-900 font-semibold py-3 px-6 md:px-8 lg:px-10 xl:px-12 rounded-full ">
                                     Add to Cart
                                 </button></a>
@@ -90,7 +91,15 @@
                                 <a href="{{ route('users.login') }}"><button class="w-full md:w-auto border-2 border-slate-900  text-slate-900 font-semibold py-3 px-6 md:px-8 lg:px-10 xl:px-12 rounded-full ">
                                     Add to Cart
                                 </button></a>
-                                @endif
+                                @endif --}}
+                                <form action="" method="POST">
+                                    @csrf
+                                    <input class="border mt-2 border-slate-900 w-20 text-center py-2 px-4 rounded-md focus:outline-none focus:border-blue-500" type="number" value="1" min="1" name="quantity">
+                                    <button type="submit" class="w-full md:w-auto border-2 border-slate-900 text-slate-900 font-semibold py-3 px-6 md:px-8 lg:px-10 xl:px-12 rounded-full">
+                                        Add to Cart
+                                    </button>
+                                </form>
+                                
                                 <button class="w-full md:w-auto bg-yellow-400 text-slate-900 font-semibold py-3 px-6 md:px-8 lg:px-10 xl:px-12 rounded-full ">
                                     Buy with Pay
                                 </button>

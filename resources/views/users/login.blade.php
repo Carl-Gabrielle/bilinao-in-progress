@@ -30,11 +30,11 @@
     </style>
 <body >
 <div class="flex flex-col lg:flex-row h-screen  ">
-    <div class="  relative flex flex-col lg:flex-row w-full  md:w-1/2  shadow-lg max-w-4xl mx-auto sm:mx-0 p-8 h-full lg:max-h-screen  md:h-full justify-center" style="background-color: white">
-     <a href="{{route('dashboard.user_dashboard')}}" >  <i class="fas hidden sm:block h-10 fa-chevron-left text-1xl text-gray-800 "></i></a> 
+    <div class="relative flex flex-col lg:flex-row w-full  md:w-1/2  shadow-lg max-w-4xl mx-auto sm:mx-0 p-8 h-full lg:max-h-screen  md:h-full justify-center bg-slate-50">
+     <a href="{{route('dashboard.user_dashboard')}}" class="hidden sm:block" >  <i class="fas  h-10 fa-chevron-left text-1xl text-gray-800 "></i></a> 
         <img class="lg:w-32 lg:h-32    absolute lg:right-20  lg:top-14  hidden md:block  " src="/illustrations/signup.png" alt="">
-        <div class="w-full   md:px-20 md:relative  flex flex-col justify-center ">
-            <h1 id="text" class="text-2xl  font-bold text-gray-800 mb-2" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);">Welcome to Bili-<span class="text-yellow-400">Nao</span>!👋</h1>
+        <div class="w-full    md:px-20 md:relative  flex flex-col justify-center ">
+            <h1 id="text" class="text-2xl   font-bold text-gray-800 mb-2" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);">Welcome to Bili-<span class="text-yellow-400">Nao</span>!👋</h1>
             <p class="text-gray-600 mb-8 ">New to Bili-<span class="text-yellow-400">Nao</span>? <a href="{{route('users.signup')}}" class="text-gray-800 font-semibold">Create an Account</a></p>
             <form class="mt-4" action="/login" method="POST">
                 @csrf
@@ -56,7 +56,7 @@
                 <div class="mb-6">
                     <a href="{{ route('users.forgot_password') }}" class="text-gray-800 font-semibold">Forgot Password?</a>
                 </div>
-                <button name="login_btn" type="submit" class="bg-gray-800 text-white w-full font-semibold hover:bg-gray-700 py-3 px-4 rounded-lg transition duration-200">
+                <button name="login_btn" type="submit" class="bg-gray-800 text-white w-full font-semibold  py-3 px-4 rounded-lg transition duration-200">
                     Log In <i class="fa-solid fa-right-to-bracket pl-2" style="color: #ffffff;"></i>
                 </button>
             </form>

@@ -34,7 +34,7 @@
     @extends('layout.navbar')
 <div class="w-full h-full landing " >
 <div class=" relative flex flex-col  h-screen items-center justify-center text-center  px-3  ">
-        <p class="text-6xl pt-32 tracking-wider z-10  sm:text-9xl uppercase text-gray-900">Explore local  <span class="text-yellow-400 font-potta animate-pulse">crafts</span>   </p>
+        <p class="text-6xl pt-32 tracking-wider z-10  sm:text-9xl uppercase text-gray-900">Explore local  <span class="text-yellow-400 font-potta ">crafts</span>   </p>
         <div class="flex items-center justify-center h-12 w-12 p-11 rounded-full border-2 border-gray-900 mt-1 z-10">
             <p class="text-gray-800 font-bold ">See more</p>
         </div>
@@ -124,10 +124,12 @@
     </div>
     <div class="w-full h-full mt-10">
         <div class="max-w-6xl px-6 mx-auto p-14">
-            <h2 class="lg:text-5xl md:text-5xl text-3xl  text-center md:text-left lg:text-left font-semibold text-gray-900 mb-10">Discover Our Collection</h2>
-        
+            <div class=" flex items-center flex-col justify-center leading-9 ">
+                <p class=" font-semibold text-2xl lg:text-4xl  md:text-left text-gray-800 text-center">Featured Collections</p>
+                <p class="sm:w-2/3  w-full text-gray-500 text-center pt-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio animi, modi magnam ullam eaque ut maiores voluptates doloremque necessitatibus fugit?</p>
+            </div>
         <!-- Product Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {{-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Product Card -->
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
             <img src="/illustrations/mats.png" alt="Product 1" class="w-full h-64 object-cover">
@@ -184,7 +186,8 @@
                 </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
+        
         </div>
     </div>
     @extends('layout.footer')

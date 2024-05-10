@@ -30,8 +30,12 @@ Route::get('/homeDecor', [decorationController::class, 'homeDecor'])->name('deco
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
 Route::post('/uploadproduct', [decorationController::class, 'uploadproduct']);
+
+Route::get('/product/{id}', [decorationController::class, 'showProductDetails'])->name('product.details');
+Route::post('/addcart/{id}', [DecorationController::class, 'addcart'])->name('addcart');
 // Route::get('/comments/create', [CommentController::class, 'create'])->name('comments.create');
 // Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 // Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
 // Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 // Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::get('/search', [DecorationController::class, 'search'])->name('search');

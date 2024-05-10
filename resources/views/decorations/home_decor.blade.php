@@ -28,8 +28,16 @@
             </a>
         @endif
         <div class="flex space-x-6 ">
-            <a href="{{route('users.login')}}"> <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-slate-900">Login</p></a>
-            <a href="{{route('users.signup')}}"> <p class="text-l font-semibold text-white">Signup</p></a>
+            @unless(Auth::check())
+            <div class="flex space-x-6 ">
+                <a href="{{ route('users.login') }}">
+                    <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-slate-900">Login</p>
+                </a>
+                <a href="{{ route('users.signup') }}">
+                    <p class="text-l font-semibold text-white">Signup</p>
+                </a>
+            </div>
+        @endunless
         </div>
         </div>
     </div>
@@ -57,6 +65,13 @@
 </div>
 <div class="w-full h-full mt-20 bg-gray-100">
     <div class="max-w-6xl px-6 mx-auto  ">
+        @if(session('success'))
+        <div id="toast" class="fixed bottom-4 right-4 z-50">
+            <div class="bg-green-500 text-white px-4 py-2 rounded-md shadow-md">
+                {{ session('success') }}
+            </div>
+        </div>
+        @endif
     <div class="flex justify-between items-center pt-16">
         <div class="flex gap-6 font-light">
             <span>Filter:</span>
@@ -114,7 +129,7 @@
             <span class="font-light ">4 products</span>
         </div>
     </div>
-    <div class="pt-11 grid grid-cols-1 pb-6 md:grid-cols-3  lg:grid-cols-4 gap-5 ml-5 mr-5">
+    <div class="pt-11 grid grid-cols-2 pb-6 md:grid-cols-3  lg:grid-cols-4 gap-5 ml-5 mr-5">
         @foreach ($homeDecorationsProducts as $product)
             <div  class="relative px-2 sm:px-0 flex flex-col justify-between cursor-pointer bg-white sm:p-4 p-0 shadow-md rounded-3xl hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out ">
                 <div class="svg-container">
@@ -127,9 +142,15 @@
                 </div>
                 <a href="{{ route('productDetails.details', $product->id) }}">
                     <img class="object-cover mx-auto  w-48 h-48 pt-10 " src="{{ asset('images/' . $product->product_image) }}" alt="{{ $product->title }}">
-                    <div class="flex flex-col justify-center">
+                    <div class="flex flex-col justify-center items-center">
                         <p class="text-center text-gray-700 mt-4 font-semibold">{{ $product->title }}</p>
                         <h2 class="text-lg font-semibold text-center text-gray-900 mt-2">&#8369;{{ $product->price }}</h2>
+                     <form action="{{url('addcart',$product->id)}}" method="POST">
+                        @csrf
+                        <button type="submit" class="w-52  border-2 border-slate-900 text-slate-900 font-semibold  px-6  rounded-full">
+                            Add to Cart
+                        </button>
+                    </form>
                     </div>
                     <div class="circle-tooltip"></div> 
                 </a>
@@ -144,7 +165,9 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
+ setTimeout(() => {
+        document.getElementById('toast').classList.add('hidden');
+    }, 3000); 
 $(document).ready(function() {
     $('#sortDropdownToggle').click(function(event) {
         event.preventDefault(); 

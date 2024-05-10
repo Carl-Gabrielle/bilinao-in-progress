@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class decorationController extends Controller
 {
@@ -47,4 +49,26 @@ class decorationController extends Controller
     
         return redirect()->back()->with('success', 'Product uploaded successfully.');
     }
+    
+    public function addcart (Request $request ,$id){
+        if (Auth::id()){
+            $product=product::find($id);
+            $user= auth()->user();
+            $cart = new cart;
+            $cart->name =$user->name;
+            $cart->product_title=$product->title;
+            $cart->price=$product->price;
+            $cart->save();
+            return redirect()->back()->with('success', 'Product added successfully.');
+        }else {
+            return view ('users.login');
+        }
+    }
+    public function search(Request $request) {
+        $query = $request->input('query');
+        $results = Product::where('title', 'like', "%$query%")->get();
+        return view('dashboard.search_results', ['results' => $results, 'query' => $query]);
+    }
+    
+    
 }
