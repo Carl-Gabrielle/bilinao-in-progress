@@ -13,10 +13,13 @@ class decorationController extends Controller
     public function homeDecor(Request $request)
     {
         $homeDecorationsProducts = Product::where('category', 'home_decorations')->get();
+        $homeDecorationsCount = Product::where('category', 'home_decorations')->count();
 
-        return view('decorations.home_decor', ['homeDecorationsProducts' => $homeDecorationsProducts]);
+        return view('decorations.home_decor', [
+            'homeDecorationsProducts' => $homeDecorationsProducts,
+            'homeDecorationsCount' => $homeDecorationsCount,
+        ]);
     }
-    
     public function uploadproduct(Request $request)
     {
         $validatedData = $request->validate([
@@ -50,25 +53,37 @@ class decorationController extends Controller
         return redirect()->back()->with('success', 'Product uploaded successfully.');
     }
     
-    public function addcart (Request $request ,$id){
-        if (Auth::id()){
-            $product=product::find($id);
-            $user= auth()->user();
-            $cart = new cart;
-            $cart->name =$user->name;
-            $cart->product_title=$product->title;
-            $cart->price=$product->price;
-            $cart->save();
-            return redirect()->back()->with('success', 'Product added successfully.');
-        }else {
-            return view ('users.login');
+    public function addcart(Request $request, $id)
+    {
+        if (Auth::id()) {
+            $product = Product::find($id);
+            if ($product->stock > 0) {
+                $product->stock--;
+                $product->save();
+                $user = auth()->user();
+                $cart = new Cart;
+                $cart->name = $user->name;
+                $cart->product_title = $product->title;
+                $cart->price = $product->price;
+                $cart->save();
+                return redirect()->back()->with('success', 'Product added to cart.');
+            } else {
+                return redirect()->back()->with('error', 'Sorry, this product is out of stock.');
+            }
+        } else {
+            return view('users.login');
         }
     }
-    public function search(Request $request) {
-        $query = $request->input('query');
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+    $results = collect([]);
+
+    if (!empty($query)) {
         $results = Product::where('title', 'like', "%$query%")->get();
-        return view('dashboard.search_results', ['results' => $results, 'query' => $query]);
     }
-    
+    return view('dashboard.search_results', ['results' => $results, 'query' => $query]);
+}
+
     
 }

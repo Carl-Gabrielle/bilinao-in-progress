@@ -15,8 +15,6 @@ class SellerMiddleware
                 return $next($request);
             }
         }
-
-        // If not authenticated or not a seller, redirect to login
         return redirect('/login');
     }
 }

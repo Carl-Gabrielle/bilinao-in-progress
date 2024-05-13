@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    
     public function signup()
     {
         return view('users.signup');
@@ -40,11 +41,9 @@ class AuthController extends Controller
         if (!$user) {
             return back()->withErrors(['email' => 'Email  not associated with any registered account.']);
         }
-    
         if (!Hash::check($credentials['password'], $user->password)) {
             return back()->withErrors(['password' => 'Incorrect password.']);
         }
-    
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if ($user->usertype == '1') {
@@ -58,15 +57,15 @@ class AuthController extends Controller
         return back()->withErrors(['email' => 'Invalid credentials']);
       }
     
-      public function logout(Request $request)
-      {
-          Auth::logout();
-      
-          $request->session()->invalidate();
-      
-          $request->session()->regenerateToken();
-      
-          return redirect()->route('users.login');
-      }
+        public function logout(Request $request)
+        {
+            Auth::logout();
+        
+            $request->session()->invalidate();
+        
+            $request->session()->regenerateToken();
+        
+            return redirect()->route('users.login');
+        }
 }
 

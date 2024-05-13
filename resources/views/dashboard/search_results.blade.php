@@ -20,17 +20,19 @@
     @if($results->isEmpty())
     <p>No products found for "{{ $query }}".</p>
 @else
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
     @foreach ($results as $result)
         <div class="bg-white rounded-lg shadow-md p-6">
             <img class="w-full h-48 object-cover mb-4" src="{{ asset('images/' . $result->product_image) }}" alt="{{ $result->title }} Image">
             <h3 class="text-lg font-semibold mb-2">{{ $result->title }}</h3>
             <p class="text-gray-700 mb-2">Price: &#8369;{{ $result->price }}</p>
+            <form action="{{ url('addcart', $result->id) }}" method="POST">
+                @csrf
             <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">Add to Cart</button>
+            </form>
         </div>
     @endforeach
 </div>
-
 @endif
 
 </body>

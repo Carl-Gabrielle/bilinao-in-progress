@@ -44,8 +44,14 @@
         <div class="w-full pt-40 relative h-full px-5">
             <div class="max-w-6xl px-6 mx-auto">
                 <div class=" hidden md:block bg-gray-50  px-4 sm:px-6 py-3 sm:py-1 rounded-lg mb-10" style="width: 33%">
-                    <nav class="flex text-xs sm:text-base" aria-label="Breadcrumb">
-                        <a href="{{route('dashboard.user_dashboard')}}" class="text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out">Home</a>
+                    <nav class="flex text-xs sm:text-base items-center" aria-label="Breadcrumb">
+                        <a href="{{route('dashboard.user_dashboard')}}">
+                            <svg width="18" height="18" fill="none" stroke="#6b7280" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path>
+                                <path d="M9 21a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1"></path>
+                                <path d="m3 12 2-2 7-7 7 7 2 2"></path>
+                            </svg>
+                            </a>
                         <span class="mx-2.5 text-gray-300">&gt;</span>
                         <a href="{{route('decorations.home_decor')}}"  class="text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out">Home Decorations</a>
                         <span class="mx-2.5 text-gray-300">&gt;</span>
@@ -99,7 +105,6 @@
                                         Add to Cart
                                     </button>
                                 </form>
-                                
                                 <button class="w-full md:w-auto bg-yellow-400 text-slate-900 font-semibold py-3 px-6 md:px-8 lg:px-10 xl:px-12 rounded-full ">
                                     Buy with Pay
                                 </button>

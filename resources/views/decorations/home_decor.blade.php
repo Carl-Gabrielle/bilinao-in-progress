@@ -45,13 +45,18 @@
 <div class="w-full pt-40 relative h-full px-5">
     <div class="max-w-6xl px-6 mx-auto">
         <div class="hidden sm:block bg-gray-50 w-2/3 sm:w-72 px-4 sm:px-6 py-3 sm:py-1 rounded-lg mb-10">
-            <nav class="flex text-xs sm:text-base" aria-label="Breadcrumb">
-                <a href="{{route('dashboard.user_dashboard')}}" class="text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out">Home</a>
+            <nav class="flex text-xs sm:text-base items-center " aria-label="Breadcrumb">
+                <a href="{{route('dashboard.user_dashboard')}}">
+                <svg width="18" height="18" fill="none" stroke="#6b7280" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path>
+                    <path d="M9 21a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1"></path>
+                    <path d="m3 12 2-2 7-7 7 7 2 2"></path>
+                 </svg>
+                </a>
                 <span class="mx-2.5 text-gray-300">&gt;</span>
                 <a href="#" class="text-gray-900">Home Decorations</a>
             </nav>
         </div>
-        
         <div class=" gap-16 ">
             <div class="md:flex  md:items-center gap-12">
                 <img class="w-full h-52 md:w-1/2 lg:h-80  mb-6 md:mb-0 " src="/illustrations/home-decor.png" alt="">
@@ -67,11 +72,22 @@
     <div class="max-w-6xl px-6 mx-auto  ">
         @if(session('success'))
         <div id="toast" class="fixed bottom-4 right-4 z-50">
-            <div class="bg-green-500 text-white px-4 py-2 rounded-md shadow-md">
-                {{ session('success') }}
+            <div class="bg-green-500 text-white px-4 py-2 rounded-md shadow-md flex items-center">
+                <i class="fas fa-cart-plus fa-lg mr-2 text-white"></i>
+                <span>{{ session('success') }}</span>
             </div>
         </div>
         @endif
+        @if(session('error'))
+        <div id="toast" class="fixed bottom-4 right-4 z-50">
+            <div class="bg-red-500 text-white px-4 py-2 rounded-md shadow-md flex items-center">
+                <i class="fas fa-exclamation-triangle fa-lg mr-2 text-white"></i>
+                <span>{{ session('error') }}</span>
+            </div>
+        </div>
+        
+    @endif
+    
     <div class="flex justify-between items-center pt-16">
         <div class="flex gap-6 font-light">
             <span>Filter:</span>
@@ -126,7 +142,8 @@
                     <a href="#" class="block px-4 py-3 hover:bg-gray-100">Price: High to Low</a>
                 </div>
             </div>
-            <span class="font-light ">4 products</span>
+            <span class="font-light">{{ $homeDecorationsCount }} product{{ $homeDecorationsCount != 1 ? 's' : '' }}</span>
+
         </div>
     </div>
     <div class="pt-11 grid grid-cols-2 pb-6 md:grid-cols-3  lg:grid-cols-4 gap-5 ml-5 mr-5">
@@ -140,24 +157,23 @@
                         <path fill-rule="evenodd" d="M3.806 6.206a4.8 4.8 0 0 1 6.788 0L12 7.612l1.406-1.406a4.8 4.8 0 1 1 6.788 6.788L12 21.188l-8.194-8.194a4.8 4.8 0 0 1 0-6.788Z" clip-rule="evenodd"></path>
                     </svg>
                 </div>
-                <a href="{{ route('productDetails.details', $product->id) }}">
-                    <img class="object-cover mx-auto  w-48 h-48 pt-10 " src="{{ asset('images/' . $product->product_image) }}" alt="{{ $product->title }}">
+                <a href="{{ route('productDetails.details', $product->id) }}" class="block">
+                    <img class="object-cover mx-auto w-48 h-48 pt-10" src="{{ asset('images/' . $product->product_image) }}" alt="{{ $product->title }}">
                     <div class="flex flex-col justify-center items-center">
                         <p class="text-center text-gray-700 mt-4 font-semibold">{{ $product->title }}</p>
                         <h2 class="text-lg font-semibold text-center text-gray-900 mt-2">&#8369;{{ $product->price }}</h2>
-                     <form action="{{url('addcart',$product->id)}}" method="POST">
-                        @csrf
-                        <button type="submit" class="w-52  border-2 border-slate-900 text-slate-900 font-semibold  px-6  rounded-full">
-                            Add to Cart
-                        </button>
-                    </form>
+                        <form action="{{ url('addcart', $product->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="w-full sm:w-auto border-2 border-slate-900 text-slate-900 font-semibold px-6 rounded-full mt-4">
+                                Add to Cart
+                            </button>
+                        </form>
                     </div>
                     <div class="circle-tooltip"></div> 
                 </a>
             </div>
         @endforeach 
     </div>
-    
 </div>
 </div>
 @extends('layout.footer')

@@ -15,12 +15,14 @@
                         </a>
                     </div>
                 </div>
-                <form action="{{ route('search') }}" method="GET">
-                    <div>
-                        <input name="query" class="sm:w-auto w-full border-2 border-gray-700 focus:border-gray-900 rounded-3xl px-6 py-1 bg-transparent placeholder-gray-900" type="text" placeholder="Search Product">
+                <form id="searchForm" action="{{ route('search') }}" method="GET">
+                    <div class="relative flex items-center justify-center">
+                        <input id="searchInput" name="query" class="sm:w-auto w-full border-2 border-gray-700 focus:border-gray-900 rounded-3xl px-6 py-1 pl-10 bg-transparent placeholder-gray-900" type="text" placeholder="Search Product">
+                        <button type="submit" class="absolute right-2 top-1  mr-2 mt-1 mb-1">
+                            <i class="fas fa-search"></i> 
+                        </button>
                     </div>
                 </form>
-                
                 <div class="absolute inset-y-0 right-0  items-center pr-2 hidden flex  sm:flex sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     <button id="cart-btn" type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span class="absolute -inset-1.5"></span>
@@ -167,13 +169,13 @@
                     <h5 class="text-gray-400">Account Settings</h5>
                 </div>
             </div> 
-            <div class="cursor-pointer bg-gray-800 mb-10 rounded-lg mt-10 flex py-1 items-center justify-center w-full">
-                <a href="{{ route('logout') }}" 
-    onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-    class="block px-4 py-2 text-sm text-white " 
+            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-white " 
     role="menuitem" tabindex="-1" 
-    id="user-menu-item-2">Logout</a>
+    id="user-menu-item-2">
+            <div class="cursor-pointer bg-gray-800 mb-10 rounded-lg mt-10 flex py-3 items-center justify-center w-full">
+                Logout
             </div>
+        </a>
         </div>
 
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -193,6 +195,13 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+
+         document.getElementById('searchForm').addEventListener('submit', function(event) {
+        var query = document.getElementById('searchInput').value.trim();
+        if (query === '') {
+            event.preventDefault();
+        }
+    });
     $(document).ready(function() {
     $('#user-menu-button').click(function(event) {
     event.stopPropagation();
