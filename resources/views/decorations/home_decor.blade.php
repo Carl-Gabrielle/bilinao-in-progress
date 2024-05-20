@@ -146,7 +146,7 @@
 
         </div>
     </div>
-    <div class="pt-11 grid grid-cols-2 pb-6 md:grid-cols-3  lg:grid-cols-4 gap-5 ml-5 mr-5">
+    {{-- <div class="pt-11 grid grid-cols-2 pb-6 md:grid-cols-3  lg:grid-cols-4 gap-5 ml-5 mr-5">
         @foreach ($homeDecorationsProducts as $product)
             <div  class="relative px-2 sm:px-0 flex flex-col justify-between cursor-pointer bg-white sm:p-4 p-0 shadow-md rounded-3xl hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out ">
                 <div class="svg-container">
@@ -173,7 +173,51 @@
                 </a>
             </div>
         @endforeach 
+    </div> --}}
+    <div class="pt-11 grid grid-cols-2 pb-6 md:grid-cols-3 lg:grid-cols-4 gap-5 ml-5 mr-5">
+        @foreach ($homeDecorationsProducts as $product)
+            <div class="product-item relative px-2 sm:px-0 flex flex-col justify-between cursor-pointer bg-white sm:p-4 p-0 shadow-md rounded-3xl hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out" data-id="{{ $product->id }}" data-title="{{ $product->title }}" data-description="{{ $product->description }}" data-image="{{ asset('images/' . $product->product_image) }}" data-price="{{ $product->price }}">
+                <div class="svg-container">
+                    <svg class="svg1 absolute right-4 sm:right-8" width="22" height="22" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.343 7.778a4.5 4.5 0 0 1 7.339-1.46L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.501 4.501 0 0 1-.975-4.904Z"></path>
+                    </svg>
+                    <svg class="svg2 absolute right-8" width="22" height="22" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path fill-rule="evenodd" d="M3.806 6.206a4.8 4.8 0 0 1 6.788 0L12 7.612l1.406-1.406a4.8 4.8 0 1 1 6.788 6.788L12 21.188l-8.194-8.194a4.8 4.8 0 0 1 0-6.788Z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <img class="object-cover mx-auto w-48 h-48 pt-10" src="{{ asset('images/' . $product->product_image) }}" alt="{{ $product->title }}">
+                <div class="flex flex-col justify-center items-center">
+                    <p class="text-center text-gray-700 mt-4 font-semibold">{{ $product->title }}</p>
+                    <h2 class="text-lg font-semibold text-center text-gray-900 mt-2">&#8369;{{ $product->price }}</h2>
+                    <form action="{{ url('addcart', $product->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="add-to-cart-button w-full sm:w-auto border-2 border-slate-900 text-slate-900 font-semibold px-6 rounded-full mt-4">
+                            Add to Cart
+                        </button>
+                    </form>
+                </div>
+                <div class="circle-tooltip"></div> 
+            </div>
+        @endforeach 
     </div>
+    
+    <!-- Modal for displaying product details -->
+    <div id="product-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white rounded-lg p-6 max-w-lg mx-auto">
+            <div class="flex justify-end">
+                <button id="close-modal" class="text-gray-600">&times;</button>
+            </div>
+            <div class="text-center">
+                <img id="modal-image" class="mx-auto w-48 h-48" src="" alt="">
+                <h2 id="modal-title" class="text-xl font-semibold mt-4"></h2>
+                <p id="modal-description" class="text-gray-700 mt-2"></p>
+                <h2 id="modal-price" class="text-lg font-semibold text-gray-900 mt-2"></h2>
+            </div>
+        </div>
+    </div>
+    
+    
+    
 </div>
 </div>
 @extends('layout.footer')
@@ -181,6 +225,44 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    
+      document.addEventListener('DOMContentLoaded', () => {
+        const productItems = document.querySelectorAll('.product-item');
+        const modal = document.getElementById('product-modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalPrice = document.getElementById('modal-price');
+        const closeModal = document.getElementById('close-modal');
+
+        productItems.forEach(item => {
+            item.addEventListener('click', (event) => {
+                if (event.target.closest('button') && event.target.closest('button').classList.contains('add-to-cart-button')) {
+                    return; 
+                }
+                const title = item.getAttribute('data-title');
+                const description = item.getAttribute('data-description');
+                const image = item.getAttribute('data-image');
+                const price = item.getAttribute('data-price');
+                modalTitle.textContent = title;
+                modalDescription.textContent = description;
+                modalImage.src = image;
+                modalImage.alt = title;
+                modalPrice.innerHTML = `&#8369;${price}`;
+                modal.classList.remove('hidden');
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
  setTimeout(() => {
         document.getElementById('toast').classList.add('hidden');
     }, 3000); 

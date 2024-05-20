@@ -43,11 +43,8 @@ class decorationController extends Controller
         $product->price = $validatedData['price'];
         $product->description = $validatedData['description'];
         $product->product_image = $imageName;
-    
-        // Set the user_id to the ID of the currently authenticated user
         $product->user_id = Auth::id();
     
-        // Save the product
         $product->save();
     
         return redirect()->back()->with('success', 'Product uploaded successfully.');
@@ -62,9 +59,11 @@ class decorationController extends Controller
                 $product->save();
                 $user = auth()->user();
                 $cart = new Cart;
+                $cart->user_id = $user->id;
                 $cart->name = $user->name;
                 $cart->product_title = $product->title;
                 $cart->price = $product->price;
+                $cart->product_image = $product->product_image;
                 $cart->save();
                 return redirect()->back()->with('success', 'Product added to cart.');
             } else {
@@ -85,5 +84,49 @@ class decorationController extends Controller
     return view('dashboard.search_results', ['results' => $results, 'query' => $query]);
 }
 
-    
+public function show($id)
+{
+    $product = Product::findOrFail($id);
+    return view('details', compact('product'));
+}
+public function viewCart()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $cartItems = Cart::where('user_id', $user->id)->get();
+            return view('cart.view', compact('cartItems'));
+        } else {
+            return redirect()->route('login');
+        }
+    }
+    public function cartContent()
+{
+    if (Auth::check()) {
+        $user = Auth::user();
+        $cartItems = Cart::where('user_id', $user->id)->get();
+        return view('cart.partial', compact('cartItems'));
+    }
+    return '';
+}
+public function getCartItemCount()
+{
+    if (Auth::check()) {
+        $user = Auth::user();
+        $cartItemCount = Cart::where('user_id', $user->id)->count();
+        return $cartItemCount;
+    }
+    return 0; 
+}
+public function deleteItem($id)
+{
+    if (Auth::check()) {
+        $user = Auth::user();
+        $cartItem = Cart::where('user_id', $user->id)->findOrFail($id);
+        $cartItem->delete();
+        return response()->json(['success' => true]);
+    }
+    return response()->json(['success' => false, 'message' => 'Unauthorized']);
+}
+
+
 }

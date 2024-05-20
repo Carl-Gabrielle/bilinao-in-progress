@@ -24,6 +24,15 @@
                     </div>
                 </form>
                 <div class="absolute inset-y-0 right-0  items-center pr-2 hidden flex  sm:flex sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    @guest
+                    <a href="{{ route('users.login') }}">
+                        <p class="text-l  px-4 rounded-3xl font-semibold text-slate-900 mr-5">Login</p>
+                    </a>
+                    <a href="{{ route('users.signup') }}">
+                        <p class="text-l font-semibold  bg-gray-800 text-white px-6 py-1 rounded-full">Signup</p>
+                    </a>
+                @else
+                    <!-- Your cart button for authenticated users -->
                     <button id="cart-btn" type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">View Cart</span>
@@ -34,8 +43,14 @@
                             <path d="M5.4 5H21l-4 8H7L5.4 5Z"></path>
                             <path d="M3 3h2l.4 2"></path>
                         </svg>
-                        <div class="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center bg-red-500 text-white rounded-full text-xs">9</div>
+                        @if(isset($cartItemCount) && $cartItemCount > 0)
+                <div class="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center bg-red-500 text-white rounded-full text-xs">
+                    {{ $cartItemCount }}
+                </div>
+            @endif
                     </button>
+                @endguest
+                
                     @if(Auth::check())
                     <div  id="user-menu-button" class="relative ml-3 cursor-pointer  hover:bg-gray-200 rounded-lg px-4 py-1">
                         <div class="flex items-center gap-2">
@@ -52,12 +67,12 @@
             </div>
             <div class="flex lg:hidden items-center">
                 <button id="mobile-menu-button" type="button" class="text-gray-300 hover:text-white focus:outline-none focus:text-white">
-                    <!-- Heroicon name: menu -->
-                    <svg  class=" text-gray-900  h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="text-gray-900 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
                 </button>
             </div>
+        
         </div>
         
         <div id="category_list" class="  hidden absolute left-0 sm:left-0 md:left-48 top-20 border border-gray-300 w-full sm:w-full md:w-2/3 h-auto  bg-white rounded-lg">
@@ -102,7 +117,7 @@
                 </div>
             </div>
         </div>
-        <div class="relative left-8 sm:left-0">
+        {{-- <div class="relative left-8 sm:left-0">
             <div id="cart-list" class="fixed hidden overflow-y-scroll  right-5 sm:right-0 z-10 mt-2 w-96 origin-top-right rounded-md bg-white py-8 px-6 shadow-lg border border-gray-200">
                 <div class="flex justify-between items-center mb-4">
                     <p class="text-2xl text-gray-900">Your Cart <span class="bg-red-500 px-6  text-white rounded-lg">9</span></p>
@@ -145,8 +160,17 @@
                 </div>
                 <button class="w-full bg-yellow-300 py-2 text-white rounded-2xl" style="background-color: orangered;">Checkout</button>
             </div>
+        </div> --}}
+        
+        <div class="relative left-8 sm:left-0">
+            <div id="cart-list" class="hidden fixed overflow-y-scroll right-5 sm:right-0 z-10 mt-2 w-96 origin-top-right h-96 rounded-md bg-white py-8 px-6 shadow-lg border border-gray-200">
+              
+            </div>
         </div>
-        <div id="user-mobile" class=" user-list absolute right-5 z-10 mt-2   w-96 h-96 origin-top-right rounded-md bg-white px-2  py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" tabindex="-1" style="display: none;">
+        
+        
+        
+        <div id="user-mobile" class=" user-list absolute right-5 z-10 mt-2   w-96 h-100 origin-top-right rounded-md bg-white px-4  py-2  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" tabindex="-1" style="display:none" >
         <div class=" py-10  px-6">
             <h3 class="text-2xl ">User Profile</h3>
             <div class="py-2 flex items-center gap-4">
@@ -169,10 +193,10 @@
                     <h5 class="text-gray-400">Account Settings</h5>
                 </div>
             </div> 
-            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-white " 
+            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-white  " 
     role="menuitem" tabindex="-1" 
     id="user-menu-item-2">
-            <div class="cursor-pointer bg-gray-800 mb-10 rounded-lg mt-10 flex py-3 items-center justify-center w-full">
+            <div class=" cursor-pointer bg-gray-800 mb-10 rounded-lg mt-10 flex py-3 items-center justify-center w-full">
                 Logout
             </div>
         </a>
@@ -195,8 +219,21 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('/cart-content')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('cart-list').innerHTML = html;
 
-         document.getElementById('searchForm').addEventListener('submit', function(event) {
+                $('#cart-close').click(function(event) {
+                    event.stopPropagation();
+                    $('#cart-list').slideUp('fast');
+                });
+            });
+    });
+
+
+document.getElementById('searchForm').addEventListener('submit', function(event) {
         var query = document.getElementById('searchInput').value.trim();
         if (query === '') {
             event.preventDefault();
@@ -228,10 +265,6 @@
     event.stopPropagation();
     $('#mobile-menu').slideToggle('fast');
     $('#user-mobile').slideUp('fast');
-    $('#cart-list').slideUp('fast');
-    });
-    $('#cart-close').click(function(event) {
-    event.stopPropagation();
     $('#cart-list').slideUp('fast');
     });
 

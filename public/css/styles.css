@@ -2,6 +2,11 @@ body{
     font-family: 'Poppins', sans-serif;
 /* background-color: #ffffff; */
 }
+.explore-local {
+    color: transparent; 
+    -webkit-text-stroke: 2px black; 
+
+}
 
 .container_nav {
     background-color: white;

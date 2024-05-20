@@ -36,9 +36,16 @@
                 <h1 id="text" class="text-2xl   font-bold text-gray-800 mb-2" >Forgot your Password?</h1>
             <p class="text-gray-600 mb-8 leading-6">Please enter the email address associated with your account and we will email you a link to reset your password.🔑 </p>
             <form class="mt-4  " action="" method="POST">
+                @csrf
                 <div class="mb-6">
                     <label for="email" class="block text-sm font-medium text-gray-600">Email Address</label>
                     <input  required type="email" id="email" name="email" class="mt-1 p-3 w-full rounded-lg border-2 border-gray-300 " >
+                    @if(session('error'))
+                    <span class="text-red-500 text-sm">{{ session('error') }}</span>
+                    @endif
+                    @if(session('success'))
+                    <span class="text-green-500 text-sm">{{ session('error') }}</span>
+                    @endif
                 </div>
                 <div class="mb-6">
                 <button name="login_btn" type="submit" class="bg-gray-800 text-white w-full font-semibold  py-3 px-4 rounded-lg transition duration-200">

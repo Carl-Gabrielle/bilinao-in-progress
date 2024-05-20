@@ -20,21 +20,24 @@
                 <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p>
             </a>
             @unless(Auth::check())
-            <div class="flex space-x-6 ">
+            {{-- <div class="flex space-x-6 ">
                 <a href="{{ route('users.login') }}">
                     <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-slate-900">Login</p>
                 </a>
                 <a href="{{ route('users.signup') }}">
                     <p class="text-l font-semibold text-white">Signup</p>
                 </a>
-            </div>
+            </div> --}}
         @endunless
         </div>
     </div>
     @extends('layout.navbar')
-<div class="w-full h-full landing " >
-<div class=" relative flex flex-col  h-screen items-center justify-center text-center  px-3  ">
-        <p class="text-6xl pt-32 tracking-wider z-10  sm:text-9xl uppercase text-gray-900">Explore local  <span class="text-yellow-400 font-potta ">crafts</span>   </p>
+<div class="w-full h-full landing  " >
+<div class=" relative flex flex-col  h-screen items-center justify-center text-center  px-3">
+    {{-- <img class="absolute  w-96 h-72 right-0 bottom-0" src="/illustrations/localwoman.jpg "alt=""> --}}
+    <p class="explore-local text-6xl pt-32 tracking-wider z-10 font-semibold sm:text-9xl uppercase text-gray-900">
+        Explore local <span class=" font-potta font-normal">crafts</span>
+    </p>
         <div class="flex items-center justify-center h-12 w-12 p-11 rounded-full border-2 border-gray-900 mt-1 z-10">
             <p class="text-gray-800 font-bold ">See more</p>
         </div>
