@@ -103,8 +103,6 @@
                     </div>
                 </div>
             </div>
-            
-            
             <div class="relative">
                 <p id="priceClick" class=" hidden sm:block hover:bg-gray-200 px-3 rounded-md cursor-pointer">Price <i class="fas fa-chevron-down text-sm  ml-2 font-light "></i></p>
                 <div id="priceDropdown" class="z-10 absolute top-full mt-2 h-auto w-96 bg-white rounded-2xl shadow-lg hidden">
