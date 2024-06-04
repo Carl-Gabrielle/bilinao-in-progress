@@ -46,7 +46,7 @@
     </style>
 <body >
 <div class="flex flex-col lg:flex-row h-screen  ">
-    <div class="z-10 relative overflow-auto flex  flex-col lg:flex-row w-full  md:w-1/2  shadow-lg max-w-4xl mx-auto sm:mx-0  h-full lg:max-h-screen p-10 md:h-full justify-center bg-slate-50 ">
+    <div class="z-10 relative rounded-r-3xl overflow-auto flex  flex-col lg:flex-row w-full  md:w-1/2  shadow-lg max-w-4xl mx-auto sm:mx-0  h-full lg:max-h-screen p-10 md:h-full justify-center bg-slate-100 ">
         <img class="lg:w-32 lg:h-32   absolute lg:right-20  lg:top-10  hidden md:block  " src="/illustrations/welcome.png" alt="">
         <div class="w-full  md:px-20 sm:px-0 flex flex-col justify-center h-screen pb-10 pt-10 ">
             <h1 id="text" class="text-2xl  font-bold text-gray-800 mb-2" >Welcome to  Bili-<span class="text-yellow-400">Nao</span>!👋</h1>
@@ -55,25 +55,25 @@
                 @csrf
                 <div class="mb-6">
                     <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
-                    <input  required type="name" id="name" name="name" class="mt-1 p-3 w-full rounded-lg border-2 border-gray-300 " value="{{ old('name') }}" >
+                    <input  required type="name" id="name" name="name" class="mt-1  py-3 px-4 w-full rounded-full border-2 border-gray-500 " value="{{ old('name') }}" >
                     @error('name')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-6">
                     <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
-                    <input  required type="email" id="email" name="email" class="mt-1 p-3 w-full rounded-lg border-2 border-gray-300" value="{{ old('email') }}" >
+                    <input  required type="email" id="email" name="email" class="mt-1 py-3 px-4 w-full rounded-full border-2 border-gray-500 " value="{{ old('email') }}" >
                     @error('email')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="relative mb-3">
                     <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
-                    <input required type="password" id="password" name="password" class="mt-1 p-3 w-full rounded-lg border-2 border-gray-300" value="{{ old('password') }}">
+                    <input required type="password" id="password" name="password" class="mt-1 py-3 px-4 w-full rounded-full border-2 border-gray-500 " value="{{ old('password') }}">
                 </div>
                 <div class="relative mb-6">
                     <label for="password_confirmation" class="block text-sm font-medium text-gray-600">Confirm Password</label>
-                    <input required type="password" id="password_confirmation" name="password_confirmation" class="mt-1 p-3 w-full rounded-lg border-2 border-gray-300" value="{{ old('password_confirmation') }}">
+                    <input required type="password" id="password_confirmation" name="password_confirmation" class="mt-1 py-3 px-4 w-full rounded-full border-2 border-gray-500 " value="{{ old('password_confirmation') }}">
                 </div>
                 @error('password')
                 <span class="text-red-500 text-sm mb-6">{{ $message }}</span>
@@ -83,7 +83,7 @@
                     <label for="showPassword" class="text-sm font-medium text-gray-900 cursor-pointer">See Password</label>
                 </div>
                 <div class="pb-10">
-                <button name="login_btn" type="submit" class=" bg-gray-800 text-white w-full font-semibold hover:bg-gray-700 py-3 px-4 rounded-lg transition duration-200">
+                <button name="login_btn" type="submit" class=" bg-gray-800 text-white w-full font-semibold  py-3 px-4 rounded-full ">
                 Signup <i class="fa-solid fa-right-to-bracket pl-2" style="color: #ffffff;"></i>
                 </button>
             </div>

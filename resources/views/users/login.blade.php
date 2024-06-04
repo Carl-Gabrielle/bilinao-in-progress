@@ -30,9 +30,9 @@
     </style>
 <body >
 <div class="flex flex-col lg:flex-row h-screen  ">
-    <div class="relative flex flex-col lg:flex-row w-full  md:w-1/2  shadow-lg max-w-4xl mx-auto sm:mx-0 p-8 h-full lg:max-h-screen  md:h-full justify-center bg-slate-50">
+    <div class="relative rounded-r-3xl flex flex-col lg:flex-row w-full  md:w-1/2  shadow-lg max-w-4xl mx-auto sm:mx-0 p-8 h-full lg:max-h-screen  md:h-full justify-center bg-slate-100">
      <a href="{{route('dashboard.user_dashboard')}}" class="hidden sm:block" >  <i class="fas  h-10 fa-chevron-left text-1xl text-gray-800 "></i></a> 
-        <img class="lg:w-32 lg:h-32    absolute lg:right-20  lg:top-14  hidden md:block  " src="/illustrations/signup.png" alt="">
+        <img class="lg:w-32 lg:h-32    absolute lg:right-20  lg:top-14  hidden md:block   " src="/illustrations/signup.png" alt="">
         <div class="w-full    md:px-20 md:relative  flex flex-col justify-center ">
             <h1 id="text" class="text-2xl   font-bold text-gray-800 mb-2" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);">Welcome to Bili-<span class="text-yellow-400">Nao</span>!👋</h1>
             <p class="text-gray-600 mb-8 ">New to Bili-<span class="text-yellow-400">Nao</span>? <a href="{{route('users.signup')}}" class="text-gray-800 font-semibold">Create an Account</a></p>
@@ -40,15 +40,14 @@
                 @csrf
                 <div class="mb-6">
                     <label for="email" class="block text-sm font-medium text-gray-600">Email Address</label>
-                    <input required type="email" id="email" name="email" class="mt-1 p-3 w-full rounded-lg border-2 border-gray-300" value="{{ old('email') }}">
+                    <input required type="email" id="email" name="email" class="mt-1 py-3 px-4 w-full rounded-full border-2 border-gray-500" value="{{ old('email') }}">
                     @error('email')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="relative mb-6">
                     <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
-                    <input required type="password" id="password" name="password" class="mt-1 p-3 w-full rounded-lg border-2 border-gray-300 pr-10">
-                    <i class="fas fa-eye-slash absolute transform -translate-y-1/2 right-3 text-gray-700" id="eye"></i>
+                    <input required type="password" id="password" name="password" class="mt-1 py-3 px-4  w-full rounded-full border-2 border-gray-500  pr-10">
                 </div>
                 @error('password')
                     <span class="text-red-500 text-sm mb-6">{{ $message }}</span>
@@ -56,7 +55,7 @@
                 <div class="mb-6">
                     <a href="{{ route('users.forgot_password') }}" class="text-gray-800 font-semibold">Forgot Password?</a>
                 </div>
-                <button name="login_btn" type="submit" class="bg-gray-800 text-white w-full font-semibold  py-3 px-4 rounded-lg transition duration-200">
+                <button name="login_btn" type="submit" class="bg-gray-800 text-white w-full font-semibold  py-3 px-4 rounded-full transition duration-200">
                     Log In <i class="fa-solid fa-right-to-bracket pl-2" style="color: #ffffff;"></i>
                 </button>
             </form>
@@ -69,14 +68,13 @@
     <div class="w-full hidden sm:block  lg:w-1/2 md:flex items-center justify-center">
         <div class="carousel overflow-hidden relative w-full h-full">
             <img src="/images/group1.png" alt="Image 1" class="carousel-item absolute top-0 left-0 w-full h-full object-cover transition-opacity opacity-100" />
-            <img  src="/images/Rectangle.jpg" alt="Image 2" class="carousel-item absolute top-0 left-0 w-full h-full object-cover transition-opacity opacity-0" />
+            <img  src="/illustrations/mockupUser.png" alt="Image 2" class="carousel-item absolute top-0 left-0 w-full h-full object-cover transition-opacity opacity-0" />
             <img src="/images/group1.png" alt="Image 3" class="carousel-item absolute top-0 left-0 w-full h-full object-cover transition-opacity opacity-0" />
         </div>
     </div>
     
 </div>
 <script src="/js/script.js"></script>
-
 </script>
 </body>
 </html>

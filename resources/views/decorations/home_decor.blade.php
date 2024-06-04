@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Decor</title>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     {{-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet"> --}}
     @vite('resources/css/app.css')
@@ -18,27 +19,19 @@
 <body>
     <div class=" text-sm w-full fixed z-20 bg-gray-800  h-10 sell flex items-center">
         <div class="flex justify-between w-full px-10 sm:px-20 ">
-            @if(auth()->check())
             <a href="{{ route('dashboard.seller') }}">
                 <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p>
             </a>
-        @else
-            <a href="{{ route('users.login') }}">
-                <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p>
-            </a>
-        @endif
-        <div class="flex space-x-6 ">
             @unless(Auth::check())
-            <div class="flex space-x-6 ">
+            {{-- <div class="flex space-x-6 ">
                 <a href="{{ route('users.login') }}">
                     <p class="text-l bg-yellow-400 px-4 rounded-3xl font-semibold text-slate-900">Login</p>
                 </a>
                 <a href="{{ route('users.signup') }}">
                     <p class="text-l font-semibold text-white">Signup</p>
                 </a>
-            </div>
+            </div> --}}
         @endunless
-        </div>
         </div>
     </div>
     @extends('layout.navbar')
@@ -85,9 +78,7 @@
                 <span>{{ session('error') }}</span>
             </div>
         </div>
-        
     @endif
-    
     <div class="flex justify-between items-center pt-16">
         <div class="flex gap-6 font-light">
             <span>Filter:</span>
@@ -200,6 +191,7 @@
             </div>
         @endforeach 
     </div>
+    
     
     <!-- Modal for displaying product details -->
     <div id="product-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">

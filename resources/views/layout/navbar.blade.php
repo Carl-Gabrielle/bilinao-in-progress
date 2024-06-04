@@ -1,4 +1,4 @@
-
+{{-- @include('layout') --}}
     <nav class="bg-gray-800 container-lg container_nav shadow-md fixed top-9 w-full z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 sm:px-6 px-0 ">
@@ -52,7 +52,7 @@
                 @endguest
                 
                     @if(Auth::check())
-                    <div  id="user-menu-button" class="relative ml-3 cursor-pointer  hover:bg-gray-200 rounded-lg px-4 py-1">
+                    <div  id="user-menu-button" class="relative ml-3 cursor-pointer  hover:bg-gray-100 rounded-lg px-4 py-1">
                         <div class="flex items-center gap-2">
                             <button  type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
@@ -161,15 +161,11 @@
                 <button class="w-full bg-yellow-300 py-2 text-white rounded-2xl" style="background-color: orangered;">Checkout</button>
             </div>
         </div> --}}
-        
         <div class="relative left-8 sm:left-0">
             <div id="cart-list" class="hidden fixed overflow-y-scroll right-5 sm:right-0 z-10 mt-2 w-96 origin-top-right h-96 rounded-md bg-white py-8 px-6 shadow-lg border border-gray-200">
               
             </div>
         </div>
-        
-        
-        
         <div id="user-mobile" class=" user-list absolute right-5 z-10 mt-2   w-96 h-100 origin-top-right rounded-md bg-white px-4  py-2  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" tabindex="-1" style="display:none" >
         <div class=" py-10  px-6">
             <h3 class="text-2xl ">User Profile</h3>

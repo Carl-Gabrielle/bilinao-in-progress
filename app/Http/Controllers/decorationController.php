@@ -30,12 +30,9 @@ class decorationController extends Controller
             'description' => 'required|string',
             'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
-    
-        // Handle file upload
         $imageName = time().'.'.$request->product_image->extension();  
         $request->product_image->move(public_path('images'), $imageName);
     
-        // Create a new product instance
         $product = new Product();
         $product->title = $validatedData['title'];
         $product->category = $validatedData['category'];
@@ -50,29 +47,61 @@ class decorationController extends Controller
         return redirect()->back()->with('success', 'Product uploaded successfully.');
     }
     
+    // public function addcart(Request $request, $id)
+    // {
+    //     if (Auth::id()) {
+    //         $product = Product::find($id);
+    //         if ($product->stock > 0) {
+    //             $product->stock--;
+    //             $product->save();
+    //             $user = auth()->user();
+    //             $cart = new Cart;
+    //             $cart->user_id = $user->id;
+    //             $cart->name = $user->name;
+    //             $cart->product_title = $product->title;
+    //             $cart->price = $product->price;
+    //             $cart->product_image = $product->product_image;
+    //             $cart->save();
+    //             return redirect()->back()->with('success', 'Product added to cart.');
+    //         } else {
+    //             return redirect()->back()->with('error', 'Sorry, this product is out of stock.');
+    //         }
+    //     } else {
+    //         return view('users.login');
+    //     }
+    // }
     public function addcart(Request $request, $id)
-    {
-        if (Auth::id()) {
-            $product = Product::find($id);
-            if ($product->stock > 0) {
-                $product->stock--;
-                $product->save();
-                $user = auth()->user();
+{
+    if (Auth::id()) {
+        $product = Product::find($id);
+        if ($product->stock > 0) {
+            $user = auth()->user();
+            $existingCartItem = Cart::where('user_id', $user->id)->where('product_id', $id)->first();
+            if ($existingCartItem) {
+                $existingCartItem->quantity++;
+                $existingCartItem->save();
+            } else {
                 $cart = new Cart;
                 $cart->user_id = $user->id;
+                $cart->product_id = $product->id; 
                 $cart->name = $user->name;
                 $cart->product_title = $product->title;
                 $cart->price = $product->price;
                 $cart->product_image = $product->product_image;
+                $cart->quantity = 1; 
                 $cart->save();
-                return redirect()->back()->with('success', 'Product added to cart.');
-            } else {
-                return redirect()->back()->with('error', 'Sorry, this product is out of stock.');
             }
+            $product->stock--;
+            $product->save();
+            return redirect()->back()->with('success', 'Product added to cart.');
         } else {
-            return view('users.login');
+            return redirect()->back()->with('error', 'Sorry, this product is out of stock.');
         }
+    } else {
+        return view('users.login');
     }
+}
+
     public function search(Request $request)
 {
     $query = $request->input('query');
@@ -89,16 +118,18 @@ public function show($id)
     $product = Product::findOrFail($id);
     return view('details', compact('product'));
 }
+
 public function viewCart()
-    {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $cartItems = Cart::where('user_id', $user->id)->get();
-            return view('cart.view', compact('cartItems'));
-        } else {
-            return redirect()->route('login');
-        }
+{
+    if (Auth::check()) {
+        $user = Auth::user();
+        $totalQuantity = Cart::where('user_id', $user->id)->sum('quantity');
+        $cartItems = Cart::where('user_id', $user->id)->get();
+        return view('cart.view', compact('cartItems', 'totalQuantity'));
+    } else {
+        return redirect()->route('login');
     }
+}
     public function cartContent()
 {
     if (Auth::check()) {

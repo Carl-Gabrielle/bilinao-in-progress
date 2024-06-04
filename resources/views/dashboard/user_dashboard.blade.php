@@ -32,9 +32,9 @@
         </div>
     </div>
     @extends('layout.navbar')
-<div class="w-full h-full landing  " >
-<div class=" relative flex flex-col  h-screen items-center justify-center text-center  px-3">
-    {{-- <img class="absolute  w-96 h-72 right-0 bottom-0" src="/illustrations/localwoman.jpg "alt=""> --}}
+<div class="w-full h-full landing  ">
+<div class=" relative flex flex-col  h-screen items-center justify-center text-center  px-3" >
+    {{-- <img class="absolute left-0 w-32 h-32 pr-2 md:w-54 md:h-80 lg:w-56 lg:h-56 mt-4 z-10 " src="/illustrations/home-decor.png" alt="Home Decor Illustration"> --}}
     <p class="explore-local text-6xl pt-32 tracking-wider z-10 font-semibold sm:text-9xl uppercase text-gray-900">
         Explore local <span class=" font-potta font-normal">crafts</span>
     </p>
@@ -50,6 +50,7 @@
             <div   class="relative rounded-3xl bg-white w-full h-72 overflow-hidden transition-transform transform-gpu hover:scale-110 duration-700" style="background-color: rgba(255, 255, 255, 0.8);backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(8px);">
                 <div  class=" inset-0  absolute   flex items-center justify-center">
                     <p class="text-gray-800 px-6 py-1   font-extrabold text-3xl    lg:text-4xl ">Home Decorations</p>
+                    {{-- <div class="w-32 h-32 md:w-54 md:h-80 lg:w-56 lg:h-56 mt-4 z-10"></div> --}}
                     <img class="w-32 h-32 pr-2 md:w-54 md:h-80 lg:w-56 lg:h-56 mt-4 z-10 " src="/illustrations/home-decor.png" alt="Home Decor Illustration">
                 </div>
                 <a href="{{route('decorations.home_decor')}}">
@@ -66,60 +67,70 @@
                     <p class="text-gray-800 px-6 py-1  left-0 font-extrabold  text-3xl   lg:text-4xl ">Tie Dye Shirts</p>
                     <img class="w-36 h-36 md:w-52 md:h-52   lg:w-56 lg:h-56 mt-4 z-10" src="/illustrations/tieDye.png" alt="Tie Dye Illustration">
                 </div>
+                <a href="{{route('tieDye.tieDye')}}">
                 <button class="absolute inline-flex bottom-0 m-8 px-6 py-2 rounded-lg text-white bg-gray-800">
                     <span class="mr-2">View Products</span>
                     <svg width="24" height="24" fill="#FFFFFF" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M14.752 6.352a1.2 1.2 0 0 1 1.696 0l4.8 4.8a1.2 1.2 0 0 1 0 1.696l-4.8 4.8a1.2 1.2 0 0 1-1.696-1.696l2.751-2.752H3.6a1.2 1.2 0 1 1 0-2.4h13.903l-2.751-2.752a1.2 1.2 0 0 1 0-1.696Z" clip-rule="evenodd"></path>
                     </svg>
                 </button>
+            </a>
             </div>
             <div class="relative rounded-3xl bg-white w-full h-72 overflow-hidden transition-transform transform-gpu hover:scale-110 duration-700"style="background-color: rgba(255, 255, 255, 0.8);backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(8px);">
                 <div  class=" inset-0  absolute   flex items-center justify-center">
                     <p class="text-gray-800 px-6 py-1   font-extrabold text-3xl   lg:text-4xl ">Hand Made Bags</p>
                     <img class="w-32 h-32 md:w-48 md:h-48   lg:w-52 lg:h-52 mt-4 z-10" src="/illustrations/bag.png" alt="Home Decor Illustration">
                 </div>
+                {{-- <a href="{{route('handBags.hand_Bags')}}"> --}}
                 <button class="absolute inline-flex bottom-0 m-8 px-6 py-2 rounded-lg text-white bg-gray-800">
                     <span class="mr-2">View Products</span>
                     <svg width="24" height="24" fill="#FFFFFF" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M14.752 6.352a1.2 1.2 0 0 1 1.696 0l4.8 4.8a1.2 1.2 0 0 1 0 1.696l-4.8 4.8a1.2 1.2 0 0 1-1.696-1.696l2.751-2.752H3.6a1.2 1.2 0 1 1 0-2.4h13.903l-2.751-2.752a1.2 1.2 0 0 1 0-1.696Z" clip-rule="evenodd"></path>
                     </svg>
                 </button>
+            </a>
             </div>
             <div class="relative rounded-3xl bg-white w-full h-72 overflow-hidden transition-transform transform-gpu hover:scale-110 duration-700"style="background-color: rgba(255, 255, 255, 0.8);backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(8px);">
                 <div  class=" inset-0  absolute   flex items-center justify-center">
                     <p class="text-gray-800 px-6 py-1  left-0 font-extrabold text-3xl   lg:text-4xl ">Accessories</p>
                     <img class="w-36 h-36 md:w-52 md:h-52   lg:w-56 lg:h-56 mt-4 z-10" src="/illustrations/accesories.png" alt="Home Decor Illustration">
                 </div>
+                {{-- <a href="{{route('accessories.accessories')}}"> --}}
                 <button class="absolute inline-flex bottom-0 m-8 px-6 py-2 rounded-lg text-white bg-gray-800">
                     <span class="mr-2">View Products</span>
                     <svg width="24" height="24" fill="#FFFFFF" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M14.752 6.352a1.2 1.2 0 0 1 1.696 0l4.8 4.8a1.2 1.2 0 0 1 0 1.696l-4.8 4.8a1.2 1.2 0 0 1-1.696-1.696l2.751-2.752H3.6a1.2 1.2 0 1 1 0-2.4h13.903l-2.751-2.752a1.2 1.2 0 0 1 0-1.696Z" clip-rule="evenodd"></path>
                     </svg>
                 </button>
+            </a>
             </div>
             <div class="relative rounded-3xl bg-white w-full h-72 overflow-hidden transition-transform transform-gpu hover:scale-110 duration-700"style="background-color: rgba(255, 255, 255, 0.8);backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(8px);">
                 <div  class=" inset-0  absolute   flex items-center justify-center">
                     <p class="text-gray-800 px-6 py-1   font-extrabold text-3xl  lg:text-4xl ">Paintings</p>
                     <img class="w-52 h-52 md:w-60 md:h-80   lg:w-56 lg:h-80 mt-4 z-10" src="/illustrations/painting.png" alt="Home Decor Illustration">
                 </div>
+                {{-- <a href="{{route('paintings.paintings')}}"> --}}
                 <button class="absolute inline-flex bottom-0 m-8 px-6 py-2 rounded-lg text-white bg-gray-800">
                     <span class="mr-2">View Products</span>
                     <svg width="24" height="24" fill="#FFFFFF" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M14.752 6.352a1.2 1.2 0 0 1 1.696 0l4.8 4.8a1.2 1.2 0 0 1 0 1.696l-4.8 4.8a1.2 1.2 0 0 1-1.696-1.696l2.751-2.752H3.6a1.2 1.2 0 1 1 0-2.4h13.903l-2.751-2.752a1.2 1.2 0 0 1 0-1.696Z" clip-rule="evenodd"></path>
                     </svg>
                 </button>
+            </a>
             </div>
             <div class="relative rounded-3xl bg-white w-full h-72 overflow-hidden transition-transform transform-gpu hover:scale-110 duration-700"style="background-color: rgba(255, 255, 255, 0.8);backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(8px);">
                 <div  class=" inset-0  absolute   flex items-center justify-center">
                     <p class="text-gray-800 px-6 py-1   font-extrabold text-3xl   lg:text-4xl ">Hand Made Mats</p>
                     <img class="w-32 h-32 pr-2  md:w-60 md:h-60   lg:w-56 lg:h-60 mt-4 z-10" src="/illustrations/mats.png" alt="Home Decor Illustration">
                 </div>
+                {{-- <a href="{{route('handMats.hand_Mats')}}"> --}}
                 <button class="absolute inline-flex bottom-0 m-8 px-6 py-2 rounded-lg text-white bg-gray-800">
                     <span class="mr-2">View Products</span>
                     <svg width="24" height="24" fill="#FFFFFF" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M14.752 6.352a1.2 1.2 0 0 1 1.696 0l4.8 4.8a1.2 1.2 0 0 1 0 1.696l-4.8 4.8a1.2 1.2 0 0 1-1.696-1.696l2.751-2.752H3.6a1.2 1.2 0 1 1 0-2.4h13.903l-2.751-2.752a1.2 1.2 0 0 1 0-1.696Z" clip-rule="evenodd"></path>
                     </svg>
                 </button>
+            </a>
             </div>
             </div>
             
@@ -190,7 +201,6 @@
                 </div>
             </div>
         </div> --}}
-        
         </div>
     </div>
     @extends('layout.footer')

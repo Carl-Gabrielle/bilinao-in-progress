@@ -65,7 +65,7 @@ class AuthController extends Controller
         
             $request->session()->regenerateToken();
         
-            return redirect()->route('users.login');
+            return redirect()->route('dashboard.user_dashboard');
         }
 }
 

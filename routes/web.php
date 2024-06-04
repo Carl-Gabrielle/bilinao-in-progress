@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\accessoriesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\decorationController;
+use App\Http\Controllers\handBagsController;
+use App\Http\Controllers\handMatsController;
+use App\Http\Controllers\paintingsController;
+use App\Http\Controllers\tieDyeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\SellerMiddleware;
@@ -28,7 +33,12 @@ Route::get('/details', [UserController::class, 'details'])->name('productDetails
 Route::get('/seller', [UserController::class, 'seller'])
     ->name('dashboard.seller')
     ->middleware(SellerMiddleware::class);
+    Route::post('/apply-seller', [UserController::class, 'applySeller'])->name('dashboard.apply.seller');
+
 Route::get('/homeDecor', [decorationController::class, 'homeDecor'])->name('decorations.home_decor');
+
+// Route::resource('tieDye', TieDyeController::class);
+Route::get('/tieDye', [TieDyeController::class, 'tieDye'])->name('tieDye.tieDye');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
 Route::post('/uploadproduct', [decorationController::class, 'uploadproduct']);

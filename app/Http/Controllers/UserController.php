@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Mail\ForgotPasswordMail;
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function login(Request $request)
@@ -47,5 +48,21 @@ class UserController extends Controller
             return redirect()->back()->with('error', "Email not registered");
         }
     }
-    
+    // public function applySeller(Request $request)
+    // {
+    //     // Validate the request data
+    //     $request->validate([
+    //         'business_name' => 'required|string|max:255',
+    //         'business_details' => 'required|string',
+    //     ]);
+
+    //     // Get the currently authenticated user
+    //     $user = Auth::user();
+
+    //     // Update the user's type to '2' (seller)
+    //     $user->usertype = '2';
+    //     $user->save();
+
+    //     return redirect()->route('dashboard.seller')->with('success', 'Your application has been submitted and you are now a seller.');
+    // }
 }

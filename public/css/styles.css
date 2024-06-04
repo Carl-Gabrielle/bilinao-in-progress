@@ -65,3 +65,19 @@ font-family: 'Potta One', sans-serif;
         background: #324054; 
     }
 
+    #checkout_form::-webkit-scrollbar {
+        width: 6px; 
+    }
+
+    #checkout_form::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+    }
+
+    #checkout_form::-webkit-scrollbar-thumb {
+        background: #b0b6be; 
+        border-radius: 3px; 
+    }
+
+    #checkout_form::-webkit-scrollbar-thumb:hover {
+        background: #c9ced6; 
+    }
