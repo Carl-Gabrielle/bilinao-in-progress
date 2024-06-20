@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class=" text-sm w-full fixed z-20 bg-gray-800  h-10 sell flex items-center">
+    <div class=" text-sm w-full fixed z-20 top-0 bg-gray-800  h-10 sell flex items-center">
         <div class="flex justify-between w-full px-10 sm:px-20 ">
             <a href="{{ route('dashboard.seller') }}">
                 <p class="text-sm space-x-6 font-semibold text-white">Sell on Bili-Nao</p>
@@ -32,20 +32,22 @@
         </div>
     </div>
     @extends('layout.navbar')
-<div class="w-full h-full landing  ">
-<div class=" relative flex flex-col  h-screen items-center justify-center text-center  px-3" >
-    {{-- <img class="absolute left-0 w-32 h-32 pr-2 md:w-54 md:h-80 lg:w-56 lg:h-56 mt-4 z-10 " src="/illustrations/home-decor.png" alt="Home Decor Illustration"> --}}
-    <p class="explore-local text-6xl pt-32 tracking-wider z-10 font-semibold sm:text-9xl uppercase text-gray-900">
-        Explore local <span class=" font-potta font-normal">crafts</span>
-    </p>
-        <div class="flex items-center justify-center h-12 w-12 p-11 rounded-full border-2 border-gray-900 mt-1 z-10">
-            <p class="text-gray-800 font-bold ">See more</p>
+    <div class='min-h-[550px]  sm:min-h-[630px] flex justify-center items-center  '>
+        <div class='px-8 sm:px-20 pt-10  '>
+    <div class=' flex flex-col justify-center gap-4 pt-16  text-center sm:text-left order-2 sm:order-1'>
+        <p  class='sm:w-2/3 w-full text-4xl tracking-wide text-gray-800 sm:text-6xl lg:text-7xl font-extrabold' >Embrace Local Artistry</p>
+        <p class="sm:w-2/3 w-full text-2xl  tracking-tight bg-clip-text text-transparent  sm:text-3xl lg:text-5xl bg-gradient-to-r from-indigo-400 to-cyan-400"> Discover Unique, Handcrafted Treasures</p>
+    <p class='text-base text-gray-500 font-normal  sm:w-1/2 w-full'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui veniam, itaque commodi reiciendis laborum dolor dignissimos sunt voluptatum error repellat!</p>
+    <button class='sm:self-start self-center border border-gray-800 px-6 py-2 rounded-3xl text-gray-800 font-semibold' >Explore Now</button>
+    </div>
+
+        </div>  
+        <div>
         </div>
-</div>
-</div>
+    </div>
 <div class=" w-full h-full rounded-t-3xl bg-gray-100">
     <div class="max-w-6xl px-6 mx-auto p-14"  style="background-image: url('/illustrations/bg_frame.png'); background-size: 100%; background-position: center; background-repeat: no-repeat;">
-        <p class="text-2xl text-center  md:text-3xl  lg:text-5xl uppercase  font-extrabold text-gray-800">Shop our  <span class="bg-yellow-200 px-4 rounded-tr-3xl rounded-bl-3xl">Categories</span>  </p>
+        <p class="text-2xl text-center  md:text-3xl  lg:text-5xl uppercase  font-extrabold text-gray-800">Shop our  <span class="bg-yellow-200 px-4 rounded-tr-3xl  rounded-bl-3xl">Categories</span>  </p>
         <div class="grid  md:grid-cols-1 lg:grid-cols-2 gap-10 md:mt-20 mt-20">
             <div   class="relative rounded-3xl bg-white w-full h-72 overflow-hidden transition-transform transform-gpu hover:scale-110 duration-700" style="background-color: rgba(255, 255, 255, 0.8);backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(8px);">
                 <div  class=" inset-0  absolute   flex items-center justify-center">

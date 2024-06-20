@@ -9,7 +9,6 @@ class Cart extends Model
 {
     use HasFactory;
     protected $fillable = ['user_id', 'product_id', 'name', 'product_title', 'price', 'product_image', 'quantity'];
-    // Define the relationship with the User model
     public function user()
     {
         return $this->belongsTo(User::class);
